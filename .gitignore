@@ -2,3 +2,5 @@
 datasets/
 checkpoints/
 *.zip
+*.png
+*.jpg
