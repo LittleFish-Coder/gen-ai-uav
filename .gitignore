@@ -1,6 +1,7 @@
 .DS_Store
 datasets/
 checkpoints/
+pytorch-CycleGAN-and-pix2pix/
 *.zip
 *.png
 *.jpg
