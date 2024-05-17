@@ -7,6 +7,30 @@ AI CUP 2024 Spring
     - Chen-Yang Yu, NCKU (Leader)
     - Yuan-Chun Jiang, NTU (Consultant)
 
+## Setup
+```bash
+git clone https://github.com/LittleFish-Coder/gen-ai-uav
+```
+```bash
+cd gen-ai-uav
+```
+before you run the code, you need to do 2 things:
+1. Download the dataset from the [AI cup website](https://tbrain.trendmicro.com.tw/Competitions/Details/34), and put the dataset in the `gen-ai-uav/dataset` folder.
+2. clone the pix2pix repository from [pytorch-CycleGAN-and-pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)
+
+```bash
+git clone https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix
+```
+
+## Prepare The Dataset
+run `preprocess_dataset.ipynb`
+
+## Train The Model
+run `train_model.ipynb`
+
+## Test The Model
+run `test_model.ipynb`
+
 ## Submission History
 | Time | Filename | Score | Description |
 | --- | --- | --- | --- |
