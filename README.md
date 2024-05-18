@@ -44,3 +44,4 @@ run `test_model.ipynb`
 |5/17 |submission_retrain200.zip|142.1900| 1. use the re-trained weights for all dataset (200 epochs) <br>2. test the image in single_test_mode|
 |5/17 |submission_road_river_80epochs.zip|144.3565|train 2 domain-specific models for 80 epochs and test in single mode|
 |5/17 |submission_all_load_size_256.zip|141.6813|test the image in single_test_mode and load_size as 256|
+|5/18|submission_road_river_400epochs.zip|124.748221|train 2 domain-specific models for 400 epochs and test in single mode|
