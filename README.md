@@ -38,6 +38,8 @@ If you want to train the model, please run `train_model.ipynb`
 We provide the pre-trained model, you can directly run `test_model.ipynb` for baseline dataset testing.
 
 ## Submission History
+
+### Public Testing
 | Time | Filename | Score | Description |
 | --- | --- | --- | --- |
 | 4/24 |submission.zip|Format Error| Inference with AI cup pretrained-weight|
@@ -52,3 +54,7 @@ We provide the pre-trained model, you can directly run `test_model.ipynb` for ba
 |5/17 |submission_all_load_size_256.zip|141.6813|test the image in single_test_mode and load_size as 256|
 |5/18|submission_road_river_400epochs.zip|124.748221|train 2 domain-specific models for 400 epochs and test in single mode|
 |5/21|submission_retrain200_resnet.zip|172.1164|retrain model with resnet block|
+
+### Private Testing
+|5/21|submission_private_resnet.zip|x|use the resnet trained model to inference on private testing dataset|
+|5/21|submission_private_unet256.zip|x|use the unet256 trained model to inference on the private testing dataset|
