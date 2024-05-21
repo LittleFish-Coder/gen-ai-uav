@@ -14,22 +14,24 @@ git clone https://github.com/LittleFish-Coder/gen-ai-uav
 ```bash
 cd gen-ai-uav
 ```
-before you run the code, you need to do 2 things:
-1. Download the dataset from the [AI cup website](https://tbrain.trendmicro.com.tw/Competitions/Details/34), and put the dataset in the `gen-ai-uav/dataset` folder.
-2. clone the pix2pix repository from [pytorch-CycleGAN-and-pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)
 
-```bash
-git clone https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix
-```
+Make sure you download the dataset from the [AI cup website](https://tbrain.trendmicro.com.tw/Competitions/Details/34), and put the dataset in the `gen-ai-uav/dataset` folder.
 
-## Prepare The Dataset
-run `preprocess_dataset.ipynb`
+## Usage
+follow the steps below to prepare the dataset, train the model, and test the model.
+1. Prepare The Dataset
+2. Train The Model (optional)
+3. Test The Model
+### Prepare The Dataset
+run `preprocess_dataset.ipynb` to download and preprocess the dataset.
 
-## Train The Model
-run `train_model.ipynb`
+### Train The Model (optional)
+we have provided the pre-trained model, you can directly move to the [next step](#test-the-model). 
 
-## Test The Model
-run `test_model.ipynb`
+If you want to train the model, please run `train_model.ipynb`
+
+### Test The Model
+we provide the pre-trained model, you can directly run `test_model.ipynb` for baseline dataset testing.
 
 ## Submission History
 | Time | Filename | Score | Description |
