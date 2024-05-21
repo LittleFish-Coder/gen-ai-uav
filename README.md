@@ -18,20 +18,24 @@ cd gen-ai-uav
 Make sure you download the dataset from the [AI cup website](https://tbrain.trendmicro.com.tw/Competitions/Details/34), and put the dataset in the `gen-ai-uav/dataset` folder.
 
 ## Usage
-follow the steps below to prepare the dataset, train the model, and test the model.
+Follow the steps below to prepare the dataset, train the model, and test the model.
 1. Prepare The Dataset
 2. Train The Model (optional)
 3. Test The Model
+
+In each notebook, we provide baseline code for you to follow.
+
+You can just finish the basline part for quick testing.
 ### Prepare The Dataset
-run `preprocess_dataset.ipynb` to download and preprocess the dataset.
+Run `preprocess_dataset.ipynb` to download and preprocess the dataset.
 
 ### Train The Model (optional)
-we have provided the pre-trained model, you can directly move to the [next step](#test-the-model). 
+We have provided the pre-trained model, you can directly move to the [next step](#test-the-model). 
 
 If you want to train the model, please run `train_model.ipynb`
 
 ### Test The Model
-we provide the pre-trained model, you can directly run `test_model.ipynb` for baseline dataset testing.
+We provide the pre-trained model, you can directly run `test_model.ipynb` for baseline dataset testing.
 
 ## Submission History
 | Time | Filename | Score | Description |
@@ -47,3 +51,4 @@ we provide the pre-trained model, you can directly run `test_model.ipynb` for ba
 |5/17 |submission_road_river_80epochs.zip|144.3565|train 2 domain-specific models for 80 epochs and test in single mode|
 |5/17 |submission_all_load_size_256.zip|141.6813|test the image in single_test_mode and load_size as 256|
 |5/18|submission_road_river_400epochs.zip|124.748221|train 2 domain-specific models for 400 epochs and test in single mode|
+|5/21|submission_retrain200_resnet.zip|172.1164|retrain model with resnet block|
