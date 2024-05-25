@@ -7,6 +7,13 @@ AI CUP 2024 Spring
     - Chen-Yang Yu, NCKU (Leader)
     - Yuan-Chun Jiang, NTU (Consultant)
 
+## Introduction
+Our task is to translate the black-and-white draft image into drone imagery.
+
+|draft imagery|drone imagery|
+|---|---|
+|![draft](./src/draft.jpg)|![drone](./src/drone.jpg)|
+
 ## Setup
 ```bash
 git clone https://github.com/LittleFish-Coder/gen-ai-uav
@@ -56,5 +63,7 @@ We provide the pre-trained model, you can directly run `test_model.ipynb` for ba
 |5/21|submission_retrain200_resnet.zip|172.1164|retrain model with resnet block|
 
 ### Private Testing
+| Time | Filename | Score | Description |
+| --- | --- | --- | --- |
 |5/21|submission_private_resnet.zip|x|use the resnet trained model to inference on private testing dataset|
 |5/21|submission_private_unet256.zip|x|use the unet256 trained model to inference on the private testing dataset|
