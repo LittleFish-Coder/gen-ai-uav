@@ -22,7 +22,10 @@ def align_images(source_folder, target_folder="train"):
         aligned_image = Image.new("RGB", (img_A.size[0] * 2, img_A.size[1]))
         aligned_image.paste(img_A, (0, 0))
         aligned_image.paste(img_B, (img_A.size[0], 0))
+        # default save as {filename}.jpg
         aligned_image.save(os.path.join(train_folder, f"{filename}.jpg"))
+        # else save as {index}.jpg
+        # aligned_image.save(os.path.join(train_folder, f"{i:04d}.jpg"))
     print("Done!")
 
 
