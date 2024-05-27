@@ -1,5 +1,5 @@
 opencv-python-headless
-imgaug
+albumentations
 
 # For Super Resolution
 # transformers
