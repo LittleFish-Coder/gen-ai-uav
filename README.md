@@ -67,3 +67,7 @@ We provide the pre-trained model, you can directly run `test_model.ipynb` for ba
 | --- | --- | --- | --- |
 |5/21|submission_private_resnet.zip|x|use the resnet trained model to inference on private testing dataset|
 |5/21|submission_private_unet256.zip|x|use the unet256 trained model to inference on the private testing dataset|
+
+## Reference
+- https://blog.csdn.net/JNingWei/article/details/78218837
+- https://stackoverflow.com/questions/23853632/which-kind-of-interpolation-best-for-resizing-image
