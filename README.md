@@ -14,6 +14,42 @@ Our task is to translate the black-and-white draft image into drone imagery.
 |---|---|
 |![draft](./src/draft.jpg)|![drone](./src/drone.jpg)|
 
+## Pipeline
+### Baseline (ROAD-RIVER at same time)
+At first, we train the model with the all the ROAD and RIVER dataset at the same conditional GAN model. However, the result is not good enough. The model can not distinguish the ROAD and RIVER draft image well.
+![baseline](./workflow/baseline.png)
+
+### Enhanced (2 domain-specific models)
+Hence, we proposed to train 2 domain-specific models for ROAD and RIVER dataset separately. 
+![enhanced](./workflow/enhanced.png)
+
+## Dataset
+The dataset contains 2 domains: `label_img`(domainA) and `img`(domainB). 
+- `label_img`: black-and-white draft imagery.
+- `img`: drone imagery.
+
+We have done some preprocessing on the dataset, including:
+- data filtering (remove low-quality images at `img`)
+- data augmentation (horizontal flip, vertical flip)
+- resize the image to 256x256 (to match the unet architecture)
+- split the dataset into `RIVER` and `ROAD` dataset.
+
+Note: we do not get the best result by using all the above methods, some method may worsen the result.
+
+
+## Result
+We show the result of the baseline and enhanced model in the following table.
+
+FID (Frechet Inception Distance) as the evaluation metric.
+The lower the score, the better the result.
+|Model|Public Testing|Private Testing|
+|---|---|---|
+|Baseline|x|x|
+|Enhanced|-|-|
+|Enhanced (+data filtering)|-|-|
+|Enhanced (+data filtering + data augmentation)|-|-|
+|Enchanced (+data filtering +resize)|-|-|
+
 ## Setup
 ```bash
 git clone https://github.com/LittleFish-Coder/gen-ai-uav
@@ -43,9 +79,9 @@ If you want to train the model, please run `train_model.ipynb`
 
 ### Test The Model
 We provide the pre-trained model, you can directly run `test_model.ipynb` for baseline dataset testing.
-
 ## Submission History
-
+unfold the details to see the submission history.
+<details>
 ### Public Testing
 | Time | Filename | Score | Description |
 | --- | --- | --- | --- |
@@ -67,6 +103,9 @@ We provide the pre-trained model, you can directly run `test_model.ipynb` for ba
 | --- | --- | --- | --- |
 |5/21|submission_private_resnet.zip|x|use the resnet trained model to inference on private testing dataset|
 |5/21|submission_private_unet256.zip|x|use the unet256 trained model to inference on the private testing dataset|
+</details>
+
+
 
 ## Reference
 - https://blog.csdn.net/JNingWei/article/details/78218837
