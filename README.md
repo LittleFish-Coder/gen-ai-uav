@@ -1,11 +1,23 @@
-# Generative-AI Navigation Information Competition for UAV
+# GenAI UAV
 
-AI CUP 2024 Spring
+[AI CUP 2024 Spring](https://tbrain.trendmicro.com.tw/Competitions/Details/34)
+
+
+Generative-AI Navigation Information Competition for UAV Reconnaissance in Natural Environments I：Image Data Generation
+
+(以生成式AI建構無人機於自然環境偵察時所需之導航資訊競賽 I － 影像資料生成競賽)
+
+
+
+
 
 - Team ID: TEAM_5333
+- Place: 18(Public), 13 (Private)
 - Member:
     - Chen-Yang Yu, NCKU (Leader)
-    - Yuan-Chun Jiang, NTU (Consultant)
+    - Yuan-Chun Chiang, NTU
+    - Yu-Hao Chiang, NCKU 
+    - Xin-Xian Lin, NCKU
 
 ## Introduction
 Our task is to translate the black-and-white draft image into drone imagery.
@@ -24,15 +36,16 @@ Hence, we proposed to train 2 domain-specific models for ROAD and RIVER dataset 
 ![enhanced](./workflow/enhanced.png)
 
 ## Dataset
-The dataset contains 2 domains: `label_img`(domainA) and `img`(domainB). 
+The dataset contains 2 domains: 
+
 - `label_img`: black-and-white draft imagery.
 - `img`: drone imagery.
 
 We have done some preprocessing on the dataset, including:
+- split the dataset into `RIVER` and `ROAD` dataset. (Enhanced Model's Architecture)
 - data filtering (remove low-quality images at `img`)
 - data augmentation (horizontal flip, vertical flip)
-- resize the image to 256x256 (to match the unet architecture)
-- split the dataset into `RIVER` and `ROAD` dataset.
+
 
 Note: we do not get the best result by using all the above methods, some method may worsen the result.
 
@@ -44,11 +57,11 @@ FID (Frechet Inception Distance) as the evaluation metric.
 The lower the score, the better the result.
 |Model|Public Testing|Private Testing|
 |---|---|---|
-|Baseline|x|x|
-|Enhanced|-|-|
-|Enhanced (+data filtering)|-|-|
-|Enhanced (+data filtering + data augmentation)|-|-|
-|Enchanced (+data filtering +resize)|-|-|
+|Baseline|141.6813	|x|
+|Enhanced|129.4026|128.060178996|
+|Enhanced <br>+ data filtering <br>+ data augmentation|206.5882|206.667928949|
+
+Unfortuantely, when we try to add more data preprocess to our dataset, the result turns worse. Since we train the model with batch_size 64, which cause the GAN learning unstable. If we have more time, we will try to train the model with a smaller batch size.
 
 ## Setup
 ```bash
@@ -66,7 +79,7 @@ Follow the steps below to prepare the dataset, train the model, and test the mod
 2. Train The Model (optional)
 3. Test The Model
 
-In each notebook, we provide baseline code for you to follow.
+In each notebook, we provide baseline and enhanced method for you to follow.
 
 You can just finish the basline part for quick testing.
 ### Prepare The Dataset
@@ -82,7 +95,9 @@ We provide the pre-trained model, you can directly run `test_model.ipynb` for ba
 ## Submission History
 unfold the details to see the submission history.
 <details>
+
 ### Public Testing
+
 | Time | Filename | Score | Description |
 | --- | --- | --- | --- |
 | 4/24 |submission.zip|Format Error| Inference with AI cup pretrained-weight|
@@ -103,6 +118,7 @@ unfold the details to see the submission history.
 | --- | --- | --- | --- |
 |5/21|submission_private_resnet.zip|x|use the resnet trained model to inference on private testing dataset|
 |5/21|submission_private_unet256.zip|x|use the unet256 trained model to inference on the private testing dataset|
+
 </details>
 
 
