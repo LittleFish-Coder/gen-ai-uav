@@ -1,15 +1,14 @@
 # GenAI UAV
 
-[AI CUP 2024 Spring](https://tbrain.trendmicro.com.tw/Competitions/Details/34)
-
+[AI CUP 2024 Spring Official Competition Website](https://tbrain.trendmicro.com.tw/Competitions/Details/34)
 
 Generative-AI Navigation Information Competition for UAV Reconnaissance in Natural Environments I：Image Data Generation
 
-(以生成式AI建構無人機於自然環境偵察時所需之導航資訊競賽 I － 影像資料生成競賽)
+以生成式AI建構無人機於自然環境偵察時所需之導航資訊競賽 I － 影像資料生成競賽
 
+🚀 Check [workshop.ipynb](workshop.ipynb) to reproduce the result we've made.
 
-
-
+🤗 Or follow the [Usage](#usage) to customize your workflow!
 
 - Team ID: TEAM_5333
 - Place: 18(Public), 13 (Private)
@@ -20,34 +19,64 @@ Generative-AI Navigation Information Competition for UAV Reconnaissance in Natur
     - Xin-Xian Lin, NCKU
 
 ## Introduction
-Our task is to translate the black-and-white draft image into drone imagery.
+Our task is to translate the **black-and-white draft imagery** into **drone imagery**.
 
-| draft imagery             | drone imagery             |
-| ------------------------- | ------------------------- |
-| ![draft](./src/draft.jpg) | ![drone](./src/drone.jpg) |
 
-## Pipeline
-### Baseline (ROAD-RIVER at same time)
-At first, we train the model with the all the ROAD and RIVER dataset at the same conditional GAN model. However, the result is not good enough. The model can not distinguish the ROAD and RIVER draft image well.
-![baseline](./workflow/baseline.png)
 
-### Enhanced (2 domain-specific models)
-Hence, we proposed to train 2 domain-specific models for ROAD and RIVER dataset separately. 
-![enhanced](./workflow/enhanced.png)
+Domain Type| Draft Imagery             | Drone Imagery             |
+|-------| ------------------------- | ------------------------- |
+|Road| ![ROAD_draft](./src/ROAD_draft.jpg) | ![ROAD_drone](./src/ROAD_drone.jpg) |
+|River| ![RIVER_draft](./src/RIVER_draft.jpg) | ![RIVER_drone](./src/RIVER_drone.jpg) |
 
 ## Dataset
+### Format
 The dataset contains 2 domains: 
 
 - `label_img`: black-and-white draft imagery.
 - `img`: drone imagery.
 
-We have done some preprocessing on the dataset, including:
-- split the dataset into `RIVER` and `ROAD` dataset. (Enhanced Model's Architecture)
-- data filtering (remove low-quality images at `img`)
-- data augmentation (horizontal flip, vertical flip)
+### Preprocess
+We have provided some preprocessing method in our code, including:
 
+- Data Filtering (remove low-quality images at `img`):
+    
+    we remove the image that is too blurry.
+    ![low_quality](./src/low_quality.jpg)
 
-Note: we do not get the best result by using all the above methods, some method may worsen the result.
+- Data Augmentation:
+    
+    we employ horizontal flip and vertical flip to augment the dataset.
+    | Raw Image | Method |Results|
+    | --------- | ---------------------------- |---|
+    | ![raw](./src/TRA_RI_1000000.jpg) | Horizontal Flip | ![horizontal](./src/TRA_RI_1000000_aug.jpg) |
+    | ![raw](./src/TRA_RO_1002198.jpg) | Vertical Flip | ![vertical](./src/TRA_RO_1002198_aug.jpg) |
+
+- Dataset Split (Enhanced Model's Architecture): 
+    
+    split the dataset into `RIVER` and `ROAD` domains. 
+    ```
+    dataset
+    ├── train_ROAD
+    │   ├── trainA (Draft Images)
+    │   └── trainB (Drone Images)
+    └── train_RIVER
+        ├── trainA (Draft Images)
+        └── trainB (Drone Images)
+    ```
+
+Note: we do not get the best result by using all the above methods.
+
+## Pipeline
+We propose 2 methods to train the model.
+1. Baseline (ROAD-RIVER at same time)
+2. Enhanced (2 domain-specific models)
+### Baseline (ROAD-RIVER at same time)
+At first, we train the model with the all the ROAD and RIVER dataset at the same conditional GAN model. However, the result is not good enough. 
+![baseline](./workflow/baseline.png)
+
+### Enhanced (2 domain-specific models)
+Hence, we proposed to train 2 domain-specific models for ROAD and RIVER dataset separately. 
+![enhanced](./workflow/enhanced.png)
 
 
 ## Result
@@ -70,28 +99,37 @@ git clone https://github.com/LittleFish-Coder/gen-ai-uav
 ```bash
 cd gen-ai-uav
 ```
+```bash
+pip install -r requirements.txt
+```
 
 Make sure you download the dataset from the [AI cup website](https://tbrain.trendmicro.com.tw/Competitions/Details/34), and put the dataset in the `gen-ai-uav/dataset` folder.
 
 ## Usage
-Follow the steps below to prepare the dataset, train the model, and test the model.
+> <font color="red">run [workshop.ipynb](workshop.ipynb) to directly reproduce the result we've made.</font>
+
+Before you start, make sure you have finished the [Setup](#setup) section.
+
+At this section, we have 3 steps for you to follow:
+
+(you can customize your own workflow by following the steps below)
 1. Prepare The Dataset
 2. Train The Model (optional)
 3. Test The Model
 
-In each notebook, we provide baseline and enhanced method for you to follow.
 
-You can just finish the basline part for quick testing.
-### Prepare The Dataset
-Run `preprocess_dataset.ipynb` to download and preprocess the dataset.
+> In each notebook, we provide baseline and enhanced method for you to follow. (You can just finish the basline part for quick testing.)
+### 1. Prepare The Dataset
+Run `dataset/preprocess_dataset.ipynb` to download and preprocess the dataset.
 
-### Train The Model (optional)
+### 2. Train The Model (optional)
 We have provided the pre-trained model, you can directly move to the [next step](#test-the-model). 
 
 If you want to train the model, please run `train_model.ipynb`
 
-### Test The Model
+### 3. Test The Model
 We provide the pre-trained model, you can directly run `test_model.ipynb` for baseline dataset testing.
+
 ## Submission History
 unfold the details to see the submission history.
 <details>
