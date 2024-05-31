@@ -41,3 +41,19 @@ def get_file_paths(folder):
 
         break  # prevent descending into subfolders
     return image_file_paths
+
+
+if __name__ == "__main__":
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--source_folder",
+        default="training_dataset",
+        help="help='Which folder to process (it should have subfolders testA, testB, trainA and trainB'",
+    )
+    args = parser.parse_args()
+
+    source_folder = args.source_folder
+
+    align_images(source_folder)
