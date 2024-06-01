@@ -10,7 +10,7 @@ Generative-AI Navigation Information Competition for UAV Reconnaissance in Natur
 
 🤗 Or follow the [Usage](#usage) to customize your workflow!
 
-📈 Check out the [Result](#result) for more details.
+📈 Check [Result](#result) or refer to the [Submission History](#submission-history) section for more details.
 
 ## Team ID: TEAM_5333
 
@@ -133,7 +133,7 @@ pip install -r requirements.txt
 Make sure you download the dataset from the [AI cup website](https://tbrain.trendmicro.com.tw/Competitions/Details/34), and put the dataset in the `gen-ai-uav/dataset` folder.
 
 ## Usage
-> <font color="red">run [workshop.ipynb](workshop.ipynb) to directly reproduce the result we've made.</font>
+> run [workshop.ipynb](workshop.ipynb) to directly reproduce the result we've made.
 
 Before you start, make sure you have finished the [Setup](#setup) section.
 
