@@ -10,13 +10,22 @@ Generative-AI Navigation Information Competition for UAV Reconnaissance in Natur
 
 🤗 Or follow the [Usage](#usage) to customize your workflow!
 
-- Team ID: TEAM_5333
-- Place: 18(Public), 13 (Private)
-- Member:
-    - Chen-Yang Yu, NCKU (Leader)
-    - Yuan-Chun Chiang, NTU
-    - Yu-Hao Chiang, NCKU 
-    - Xin-Xian Lin, NCKU
+📈 Check out the [Result](#result) for more details.
+
+## Team ID: TEAM_5333
+
+**Placement:**
+- Public: 18th
+- Private: 13th
+
+**Members:**
+- **Chen-Yang Yu**, NCKU (Team Leader)
+- Yuan-Chun Chiang, NTU
+- Yu-Hao Chiang, NCKU 
+- Xin-Xian Lin, NCKU
+
+**Collaboration:**
+- Team 5574: [Sherry2580/AI-cup-2024-spring](Sherry2580/AI-cup-2024-spring)
 
 ## Introduction
 Our task is to translate the **black-and-white draft imagery** into **drone imagery**.
@@ -66,24 +75,42 @@ We have provided some preprocessing method in our code, including:
 
 Note: we do not get the best result by using all the above methods.
 
-## Pipeline
+## Model Pipeline
 We propose 2 methods to train the model.
 1. Baseline (ROAD-RIVER at same time)
 2. Enhanced (2 domain-specific models)
 ### Baseline (ROAD-RIVER at same time)
-At first, we train the model with the all the ROAD and RIVER dataset at the same conditional GAN model. However, the result is not good enough. 
+At first, we train the model with all the ROAD and RIVER dataset at the same conditional GAN model. However, the result is not good enough. 
 ![baseline](./workflow/baseline.png)
 
 ### Enhanced (2 domain-specific models)
 Hence, we proposed to train 2 domain-specific models for ROAD and RIVER dataset separately. 
 ![enhanced](./workflow/enhanced.png)
 
+## Other Methods
+### Hyperparameter Tuning
+We have tried to tune the hyperparameters, including `n_epochs`, `n_epochs_decay`, `batch_size`, `netG`.
+The best result we got is to train the model with the following hyperparameters:
+```
+n_epochs = 200 
+n_epochs_decay = 200
+batch_size = 1
+netG = unet_256
+```
+### Super Resolution
+Since the result from the pix2pix model is in `256x256` format, we tried to use the super resolution method to upscale the image to 428x240. However, the result did not improve a lot.
+(You can check the super resolution code in [other/super_resolution.ipynb](other/super_resolution.ipynb))
+
+### Potential Method to Improve
+We believe that the result can be improved by using [pix2pixHD](https://github.com/NVIDIA/pix2pixHD) or [img2img-turbo](https://github.com/GaParmar/img2img-turbo). 
+
+However, due to the lack of hardware resources and competition time limitation, we did not try this method.
 
 ## Result
 We show the result of the baseline and enhanced model in the following table.
 
-FID (Frechet Inception Distance) as the evaluation metric.
-The lower the score, the better the result.
+> FID (Frechet Inception Distance) as the evaluation metric. <br> The lower the score, the better the result.
+
 | Model                                                 | Public Testing | Private Testing   |
 | ----------------------------------------------------- | -------------- | ----------------- |
 | Baseline                                              | 141.6813       | x                 |
@@ -165,6 +192,25 @@ unfold the details to see the submission history.
 
 
 
-## Reference
+## Acknowledgements & Reference
+- [junyanz/pytorch-CycleGAN-and-pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)
+```
+@inproceedings{CycleGAN2017,
+  title={Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks},
+  author={Zhu, Jun-Yan and Park, Taesung and Isola, Phillip and Efros, Alexei A},
+  booktitle={Computer Vision (ICCV), 2017 IEEE International Conference on},
+  year={2017}
+}
+
+
+@inproceedings{isola2017image,
+  title={Image-to-Image Translation with Conditional Adversarial Networks},
+  author={Isola, Phillip and Zhu, Jun-Yan and Zhou, Tinghui and Efros, Alexei A},
+  booktitle={Computer Vision and Pattern Recognition (CVPR), 2017 IEEE Conference on},
+  year={2017}
+}
+```
+- Cowork Team 5574: [Sherry2580/AI-cup-2024-spring](https://github.com/Sherry2580/AI-cup-2024-spring)
+
 - https://blog.csdn.net/JNingWei/article/details/78218837
 - https://stackoverflow.com/questions/23853632/which-kind-of-interpolation-best-for-resizing-image
