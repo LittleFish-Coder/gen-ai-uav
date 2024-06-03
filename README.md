@@ -25,7 +25,7 @@ Generative-AI Navigation Information Competition for UAV Reconnaissance in Natur
 - Xin-Xian Lin, NCKU
 
 **Collaboration:**
-- Team 5574: [Sherry2580/AI-cup-2024-spring](Sherry2580/AI-cup-2024-spring)
+- Team 5574: [Sherry2580/AI-cup-2024-spring](https://github.com/Sherry2580/AI-cup-2024-spring)
 
 ## Introduction
 Our task is to translate the **black-and-white draft imagery** into **drone imagery**.
