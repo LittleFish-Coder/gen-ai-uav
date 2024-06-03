@@ -38,13 +38,26 @@ Domain Type| Draft Imagery             | Drone Imagery             |
 |River| ![RIVER_draft](./src/RIVER_draft.jpg) | ![RIVER_drone](./src/RIVER_drone.jpg) |
 
 ## Dataset
-### Format
+### Training Dataset Format
 The dataset contains 2 domains: 
 
 - `label_img`: black-and-white draft imagery.
 - `img`: drone imagery.
 
-### Preprocess
+Training Dataset Folder Structure:
+```
+training_dataset
+├── label_img (trainA)
+│   ├── TRA_RI_1000000.png
+│   ├── TRA_RI_1000001.png
+│   └── ...
+└── img (trainB)
+    ├── TRA_RO_1000000.jpg
+    ├── TRA_RO_1000001.jpg
+    └── ...
+```
+
+### Training Dataset Data Preprocess
 We have provided some preprocessing method in our code, including:
 
 - Data Filtering (remove low-quality images at `img`):
@@ -74,6 +87,33 @@ We have provided some preprocessing method in our code, including:
     ```
 
 Note: we do not get the best result by using all the above methods.
+
+### Testing Dataset Format
+The testing dataset contains only the `label_img` folder, which is the black-and-white draft imagery.
+
+Testing Dataset Folder Structure:
+```
+testing_dataset
+└── label_img (testA)
+    ├── PRI_RI_1000000.png
+    ├── PRI_RI_1000001.png
+    └── ...
+```
+
+After Dataset Split:
+```
+dataset
+├── test_ROAD
+│   └── testA (Draft Images)
+│       ├── PRI_RO_1000000.png
+│       ├── PRI_RO_1000001.png
+│       └── ...
+└── test_RIVER
+    └── testA (Draft Images)
+        ├── PRI_RI_1000000.png
+        ├── PRI_RI_1000001.png
+        └── ...
+```
 
 ## Model Pipeline
 We propose 2 methods to train the model.
